@@ -1,0 +1,37 @@
+version: '3.8'
+
+networks:
+  yearning:
+    external: true
+
+services:
+    yearning:
+        build: .
+        container_name: yearning_core
+        networks:
+            - yearning
+        ports:
+            - 8889:8000
+        depends_on:
+            - mysql
+        restart: always
+
+    mysql:
+        image: mysql:5.7
+        container_name: yearning_mysql
+        networks:
+            - yearning
+        environment:
+            MYSQL_ROOT_PASSWORD: ~
+            MYSQL_DATABASE: yearning
+            MYSQL_USER: yearning
+            MYSQL_PASSWORD: ~
+        command:
+            - --character-set-server=utf8mb4
+            - --collation-server=utf8mb4_unicode_ci
+        volumes:
+            - mysql-data:/var/lib/mysql
+        restart: always
+
+volumes:
+  mysql-data:

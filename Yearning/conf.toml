@@ -1,0 +1,9 @@
+[Mysql]
+Db = "yearning"
+Host = "mysql"
+Port = "3306"
+Password = "~"
+User = "yearning"
+
+[General]
+SecretKey = "~"
