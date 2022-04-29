@@ -61,6 +61,27 @@ test.toby.vip {
   }
 }
 
+test1.toby.vip {
+  encode gzip
+  tls toby@toby.vip
+  handle_path /dir1/* {
+    reverse_proxy localhost:9001 {
+      header_up Host {http.request.host}
+      header_up X-Real-IP {http.request.remote.host}
+      header_up X-Forwarded-For {http.request.remote.host}
+      header_up X-Forwarded-Port {http.request.port}
+    }
+  }
+  handle_path /dir2/* {
+    reverse_proxy localhost:9002 {
+      header_up Host {http.request.host}
+      header_up X-Real-IP {http.request.remote.host}
+      header_up X-Forwarded-For {http.request.remote.host}
+      header_up X-Forwarded-Port {http.request.port}
+    }
+  }
+}
+
 file.toby.vip {
   encode gzip
   tls /ssl/toby.vip.pem /ssl/toby.vip.key
