@@ -102,9 +102,11 @@ file.toby.vip {
      transport http {
        tls_insecure_skip_verify
      }
+     header_up Host {http.request.host}
      header_up X-Real-IP {http.request.remote.host}
      header_up X-Forwarded-For {http.request.remote.host}
-     header_up X-Forwarded-Port {http.request.port}
+     # jetty 可能无法兼容 X-Forwarded-Port
+     # header_up X-Forwarded-Port {http.request.port}
    }
 }
 ```
