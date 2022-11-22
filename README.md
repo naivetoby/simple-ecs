@@ -122,9 +122,11 @@ vim /etc/docker/daemon.json
 
 {
   "registry-mirrors": [
-    "https://z29m39ma.mirror.aliyuncs.com",
-    "https://hub-mirror.c.163.com",
-    "https://mirror.baidubce.com"
+    "https://dockerproxy.com",
+    "https://xxxx.mirror.aliyuncs.com",
+    "https://docker.mirrors.ustc.edu.cn",
+    "https://dockerhub.azk8s.cn",
+    "https://hub-mirror.c.163.com"
   ]
 }
 
