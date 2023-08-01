@@ -259,11 +259,7 @@ vim /etc/docker/daemon.json
   "log-driver": "json-file",
   "log-opts": {
      "max-size": "100m"
-   },
-  "storage-driver": "overlay2",
-  "storage-opts": [
-    "overlay2.override_kernel_check=true"
-  ]
+   }
 }
 
 systemctl daemon-reload && systemctl restart docker
