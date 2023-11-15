@@ -30,6 +30,27 @@ sudo dnf config-manager --add-repo https://download.docker.com/linux/centos/dock
 sudo dnf -y install docker-ce docker-ce-cli containerd.io docker-compose-plugin
 sudo systemctl --now enable docker
 
+# Docker 配置
+vim /etc/docker/daemon.json
+
+{
+  "registry-mirrors": [
+    "https://dockerproxy.com",
+    "https://xxxx.mirror.aliyuncs.com",
+    "https://docker.mirrors.ustc.edu.cn",
+    "https://dockerhub.azk8s.cn",
+    "https://hub-mirror.c.163.com"
+  ],
+  "log-opts": {
+     "max-size": "100m"
+  },
+  "exec-opts": ["native.cgroupdriver=systemd"], # 好像已经默认
+  "log-driver": "json-file", # 好像已经默认
+  "data-root": "/data/docker" # 修改 Docker 路径, 这是可选的
+}
+
+systemctl daemon-reload && systemctl restart docker
+
 # 创建用户 toby
 useradd toby
 su tody
