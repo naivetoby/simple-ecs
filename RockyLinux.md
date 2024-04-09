@@ -1,6 +1,6 @@
 # 服务器基础运维文档
 
-#### 基于 Rocky Linux 9.2 版本
+#### 基于 Rocky Linux 9.3 版本
 
 ```bash
 
