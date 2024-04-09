@@ -79,4 +79,9 @@ sudo usermod -aG docker toby
 # 卸载
 sudo dnf -y autoremove htop
 
+# 查看一些系统信息
+uname -a
+cat /etc/rocky-release
+locale
+
 ```
