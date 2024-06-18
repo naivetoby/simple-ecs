@@ -26,7 +26,7 @@ sudo timedatectl set-timezone Asia/Shanghai
 sudo dnf -y install htop
 
 # 安装 Docker
-sudo dnf config-manager --add-repo https://download.docker.com/linux/centos/docker-ce.repo
+sudo dnf config-manager --add-repo http://mirrors.aliyun.com/docker-ce/linux/centos/docker-ce.repo
 sudo dnf -y install docker-ce docker-ce-cli containerd.io docker-compose-plugin
 sudo systemctl --now enable docker
 
@@ -83,9 +83,6 @@ sudo dnf -y autoremove htop
 uname -a
 cat /etc/rocky-release
 locale
-
-# 更换 Docker CE 源
-sed -i 's+https://download.docker.com+https://mirrors.tuna.tsinghua.edu.cn/docker-ce+' /etc/yum.repos.d/docker-ce.repo
 
 # 更换 Rocky Linux 源
 
