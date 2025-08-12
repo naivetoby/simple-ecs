@@ -1,0 +1,18 @@
+*.test.toby.vip {
+   encode gzip
+   tls {
+     dns alidns {
+       access_key_id {env.ALIYUN_ACCESS_KEY_ID}
+       access_key_secret {env.ALIYUN_ACCESS_KEY_SECRET}
+     }
+   }
+   reverse_proxy https://*.test.toby.vip:18443 {
+     transport http {
+       tls_insecure_skip_verify
+     }
+     header_up Host {http.request.host}
+     header_up X-Real-IP {http.request.remote.host}
+     header_up X-Forwarded-For {http.request.remote.host}
+     header_up X-Forwarded-Port {http.request.port}
+   }
+}

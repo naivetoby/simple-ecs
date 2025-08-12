@@ -1,0 +1,13 @@
+import /vhost/*
+
+www.toby.vip {
+  redir https://toby.vip{uri}
+}
+
+toby.vip {
+  encode gzip
+  tls /ssl/toby.vip.pem /ssl/toby.vip.key
+  root * /site/official
+  file_server
+  try_files {path} {path}/ /index.html
+}

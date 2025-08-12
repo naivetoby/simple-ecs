@@ -1,0 +1,18 @@
+services:
+  caddy:
+    build: .
+    container_name: caddy
+    env_file:
+      - $PWD/.env
+    network_mode: host
+    restart: unless-stopped
+    volumes:
+      - $PWD/Caddyfile:/etc/caddy/Caddyfile
+      - $PWD/site:/site
+      - $PWD/ssl:/ssl
+      - data:/data
+      - config:/config
+
+volumes:
+  data:
+  config:

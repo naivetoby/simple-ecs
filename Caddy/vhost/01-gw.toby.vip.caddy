@@ -1,0 +1,27 @@
+gw.toby.vip {
+  encode gzip
+  tls toby@toby.vip
+  handle_path /api/* {
+    reverse_proxy 127.0.0.1:9001 {
+      header_up Host {http.request.host}
+      header_up X-Real-IP {http.request.remote.host}
+      header_up X-Forwarded-For {http.request.remote.host}
+      # jetty 可能无法兼容 X-Forwarded-Port
+      # header_up X-Forwarded-Port {http.request.port}
+    }
+  }
+  handle_path /ws/* {
+    reverse_proxy 127.0.0.1:9002 {
+        header_up Host {http.request.host}
+        header_up X-Real-IP {http.request.remote.host}
+        header_up X-Forwarded-For {http.request.remote.host}
+        header_up Upgrade {http.request.header.Upgrade}
+        header_up Connection "upgrade"
+    }
+  }
+  handle_path /* {
+    root * /site/gateway/
+    file_server
+    try_files {path} {path}/ /index.html
+  }
+}

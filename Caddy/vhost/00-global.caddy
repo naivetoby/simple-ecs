@@ -1,0 +1,4 @@
+# 可选：统一 80 端口跳转到 HTTPS
+:80 {
+    redir https://{host}{uri} permanent
+}
