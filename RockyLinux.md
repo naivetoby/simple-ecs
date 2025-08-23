@@ -52,7 +52,7 @@ vim /etc/docker/daemon.json
 systemctl daemon-reload && systemctl restart docker
 
 # 创建用户 toby
-useradd toby
+useradd -m -s /bin/bash toby
 su tody
 cd ~
 mkdir ~/.ssh
