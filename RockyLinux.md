@@ -3,6 +3,18 @@
 #### 基于 Rocky Linux 9.3 版本
 
 ```bash
+# 更换 Rocky Linux 源
+
+# 设置镜像变量
+MIRROR=mirrors.aliyun.com/rockylinux
+# 执行替换
+sudo sed -i.bak \
+-e "s|^mirrorlist=|#mirrorlist=|" \
+-e "s|^#baseurl=|baseurl=|" \
+-e "s|dl.rockylinux.org/\$contentdir|$MIRROR|" \
+/etc/yum.repos.d/rocky-*.repo
+# 生成缓存
+sudo dnf makecache
 
 # 更新系统
 sudo dnf -y update
@@ -84,18 +96,5 @@ sudo dnf -y autoremove htop
 uname -a
 cat /etc/rocky-release
 locale
-
-# 更换 Rocky Linux 源
-
-# 设置镜像变量
-MIRROR=mirrors.aliyun.com/rockylinux
-# 执行替换
-sudo sed -i.bak \
--e "s|^mirrorlist=|#mirrorlist=|" \
--e "s|^#baseurl=|baseurl=|" \
--e "s|dl.rockylinux.org/\$contentdir|$MIRROR|" \
-/etc/yum.repos.d/rocky-*.repo
-# 生成缓存
-sudo dnf makecache
 
 ```
