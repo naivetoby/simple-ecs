@@ -66,7 +66,7 @@ systemctl daemon-reload && systemctl restart docker
 # 创建用户 toby
 useradd -m toby
 # userdel -r toby
-su tody
+su toby
 cd ~
 mkdir ~/.ssh
 vim ~/.ssh/authorized_keys
